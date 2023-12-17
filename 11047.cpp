@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <vector>
 using namespace std;
 
 int main()
@@ -8,37 +8,22 @@ int main()
     cin.tie(NULL);
     cout.tie(NULL);
 
-    int n, k;
+    int n, k, input, dap = 0, imsi;
 
     cin >> n >> k;
 
-    short arr[k + 1];
-    int value[n];
-
-    arr[0] = 0;
-
-    for (int i = 1; i < k + 1; i++)
-    {
-        arr[i] = 32765;
-    }
+    vector<int> coin;
 
     for (int i = 0; i < n; i++)
     {
-        cin >> value[i];
+        cin >> input;
+        coin.push_back(input);
     }
-    for (int i = 1; i < k + 1; i++)
+    for (int i = coin.size() - 1; i >= 0; i--)
     {
-        for (int j = 0; j < n; j++)
-        {
-            if (value[j] <= i && arr[i - value[j]] + 1 < arr[i])
-            {
-                arr[i] = arr[i - value[j]] + 1;
-            }
-        }
+        imsi = k / coin[i];
+        k -= imsi * coin[i];
+        dap += imsi;
     }
-    // for (int i = 0; i < k + 1; i++)
-    // {
-    //     cout << arr[i] << " ";
-    // }
-    cout << arr[k];
+    cout << dap << "\n";
 }
